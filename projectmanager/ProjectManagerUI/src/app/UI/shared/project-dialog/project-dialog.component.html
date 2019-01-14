@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Select a Project</h1>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-md-6">
+      <input class="form-control" type="text" placeholder="Filter..." [(ngModel)]="srchTerm" />
+    </div>
+  </div>
+  <br/>
+  <table class="table table-bordered table-responsive table-condensed">
+    <thead style="color: white;background-color: #0061a0;">
+      <tr>
+        <th>Project</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Priority</th>
+        <th>Manager</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects | filter : srchTerm : searchProps">
+        <td>{{project.ProjectName}}</td>
+        <td>{{project.StartDate}}</td>
+        <td>{{project.EndDate}}</td>
+        <td>{{project.Priority}}</td>
+        <td>{{project.ProjectManagerFullName}}</td>
+        <td>
+          <button class="btn btn-success fa fa-check" title="Select" (click)="close(project)"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>

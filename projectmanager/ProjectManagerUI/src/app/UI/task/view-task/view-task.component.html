@@ -1,0 +1,61 @@
+<div class="row" *ngIf="loading">
+    <div style="text-align: right;">
+      <img style="width: 250px;" Src="../../../../assets/processing.gif">
+    </div>
+  </div>
+<accordion>
+    <accordion-group heading="View Task" [isOpen]="true" >
+<div class="row" style="background-color: lightgray;height: 60px;padding-top: 10px;">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-2 col-xs-2">
+        <label>Project:</label>
+      </div>
+      <div class="col-md-8 col-xs-6">
+        <input type="text" placeholder="Click on Search and select a Project to View" class="form-control" [(ngModel)]="selectedProj" readonly>
+      </div>
+      <div class="col-md-2 col-xs-4">
+        <input type="button" class="btn btn-primary margin-right-10" value="Search" (click)="openProjectDialog()" />
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label>Sort Records By:</label>
+    <button class="margin-right-10 margin-left-10" mat-button color="primary" (click)="sortRecords('StartDate')">Start Date</button>
+    <button class="margin-right-10" mat-button color="primary" (click)="sortRecords('EndDate')">End Date</button>
+    <button class="margin-right-10" mat-button color="primary" (click)="sortRecords('Priority')">Priority</button>
+    <button class="margin-right-10" mat-button color="primary" (click)="sortRecords('TaskStatus')">Completed</button>
+  </div>
+</div>
+</accordion-group>
+</accordion>
+<hr/>
+
+
+<table class="table table-bordered table-responsive table-condensed">
+  <thead style="color: white;background-color: #0061a0;">
+    <tr>
+      <th style="text-align: center">Task</th>
+      <th style="text-align: center">Parent</th>
+      <th style="text-align: center">Priority</th>
+      <th style="text-align: center">Start</th>
+      <th style="text-align: center">End</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks | orderBy: path : order">
+      <td>{{task.TaskName}}</td>
+      <td>{{task.ParentName}}</td>
+      <td>{{task.Priority}}</td>
+      <td>{{task.StartDate}}</td>
+      <td>{{task.EndDate}}</td>
+      <td>
+        <span *ngIf="task.TaskStatus === 'A'">
+          <button class="btn btn-success margin-right-10 fa fa-pencil-square-o" title="Edit" [routerLink]="['/editTask', task.TaskId]"></button>
+          <button class="btn btn-danger margin-right-10 fa fa-trash" title="End Task" (click)="endTask(task.TaskId)"></button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

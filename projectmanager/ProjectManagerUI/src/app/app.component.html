@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default" style="background-color: #0061a0" >
+  <div class="container-fluid">
+    <ul class="nav navbar-nav white-font">
+    <li>
+      <a class="navbar-brand white-font fa fa-home" href="#">  Home</a>
+     </li>
+      <li>
+          <a class="white-font fa fa-plus" routerLink="/addUser"> User</a>
+      </li>
+      <li>
+        <a class="white-font fa fa-plus" routerLink="/addProject"> Project</a>
+      </li>
+      <li>
+        <a class="white-font fa fa-plus" routerLink="/addTask"> Task</a>
+      </li>
+      <li>
+        <a class="white-font fa fa-search" routerLink="/viewTask"> Task</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div style="text-align: center;color: darkgreen;"><h4>Project Manager</h4></div>
+
+<div class="container-fluid app-padding">
+  <router-outlet></router-outlet>
+</div>
+
